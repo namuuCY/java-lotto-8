@@ -34,12 +34,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("번호 순서가 오름차순이 아니면 예외가 발생한다")
-    @Test
-    void 번호_순서가_오름차순이_아니면_예외() {
-        assertThatThrownBy(() -> Lotto.of(List.of(5, 2, 9, 7, 3, 1)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
+    // 이거는 출력 시 테스트 값으로 확인
+//    @DisplayName("저장된 로또 번호 순서가 오름차순이 아니면 예외가 발생한다")
+//    @Test
+//    void 번호_순서가_오름차순이_아니면_예외() {
+//        assertThatThrownBy(() -> Lotto.of(List.of(5, 2, 9, 7, 3, 1)))
+//                .isInstanceOf(IllegalArgumentException.class);
+//    }
 
     @DisplayName("특정 숫자가 조합에 포함되어 있는지 테스트")
     @ParameterizedTest

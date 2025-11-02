@@ -13,7 +13,8 @@ public class Lotto {
 
     private Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        List<Integer> sortedNumbers = sortAscend(numbers);
+        this.numbers = sortedNumbers;
     }
 
     public static Lotto of(List<Integer> numbers) {
@@ -30,14 +31,12 @@ public class Lotto {
     private void validateCombination(List<Integer> numbers) {
         validateLength(numbers);
         validateDuplicate(numbers);
-        validateAscending(numbers);
     }
 
-    private void validateAscending(List<Integer> numbers) {
-        Integer numbersSize = numbers.size();
-        for (int i = 0; i < numbersSize - 2; i++) {
-            isAscending(numbers.get(i), numbers.get(i + 1));
-        }
+    private List<Integer> sortAscend(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 
     private void isAscending(Integer former, Integer latter) {
