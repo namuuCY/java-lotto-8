@@ -59,4 +59,10 @@ class LottoTest {
                 Arguments.of(List.of(11, 22, 33, 34, 35, 36), 7, false)
         );
     }
+
+    @Test
+    void 로또_번호의_개수가_6개_미만일_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> Lotto.of(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
