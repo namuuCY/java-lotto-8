@@ -28,9 +28,67 @@
 # 자의적으로 추가한 요구사항
 
 - 구입 금액은 10만원의 한도를 갖습니다.(로또 1인 구매액 한도와 동일)
+- 최소 구입 금액은 1000원 입니다.
 
 디렉토리 구조
 ---
 
+```
+.
+├── Application.java
+├── configuration
+│   └── AppConfig.java
+├── controller
+│   ├── LottoController.java
+│   └── dto
+│       ├── PurchasedLotto.java
+│       └── WinningStatistics.java
+├── domain
+│   ├── entity
+│   │   └── Customer.java
+│   ├── service
+│   │   ├── LottoGenerator.java
+│   │   └── RandomLottoGenerator.java
+│   └── vo
+│       ├── BonusNumber.java
+│       ├── Lotto.java
+│       ├── Payment.java
+│       ├── ProfitRate.java
+│       ├── Rank.java
+│       ├── Statistics.java
+│       └── WinningLotto.java
+├── exception
+│   ├── DomainException.java
+│   └── ExceptionCode.java
+├── service
+│   └── LottoService.java
+└── view
+    ├── Announcement.java
+    ├── InputReader.java
+    └── OutputWriter.java
+
+```
+
+테스트 디렉토리 구조
 ---
+
+```
+.
+├── ApplicationTest.java
+├── domain
+│   ├── entity
+│   │   └── CustomerTest.java
+│   ├── service
+│   │   └── StubLottoGenerator.java
+│   └── vo
+│       ├── BonusNumberTest.java
+│       ├── LottoTest.java
+│       ├── PaymentTest.java
+│       ├── ProfitRateTest.java
+│       ├── RankTest.java
+│       ├── StatisticsTest.java
+│       └── WinningLottoTest.java
+└── exception
+
+```
 
