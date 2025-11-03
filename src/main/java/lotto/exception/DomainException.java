@@ -2,7 +2,9 @@ package lotto.exception;
 
 public class DomainException extends IllegalArgumentException {
 
+    private static final String PREFIX = "[ERROR] ";
+
     public DomainException(ExceptionCode exceptionCode) {
-        super(exceptionCode.getMessage());
+        super(PREFIX + exceptionCode.getMessage());
     }
 }
