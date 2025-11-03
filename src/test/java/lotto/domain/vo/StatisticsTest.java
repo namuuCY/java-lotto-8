@@ -2,8 +2,8 @@ package lotto.domain.vo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.EnumMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,14 +14,15 @@ public class StatisticsTest {
 
     @BeforeEach
     void setUp() {
-        // 5등 1개 (5,000원), 4등 1개 (50,000원), 나머지 0개
-        Map<Rank, Integer> statsMap = new EnumMap<>(Rank.class);
-        statsMap.put(Rank.FIFTH, 1);
-        statsMap.put(Rank.FOURTH, 1);
-        statsMap.put(Rank.MISS, 6); // 8개 구매 가정
-
-        statistics = new Statistics(statsMap);
+//         5등 1개 (5,000원), 4등 1개 (50,000원)
+        List<Rank> stats = new ArrayList<>();
+        stats.add(Rank.FIFTH);
+        stats.add(Rank.FOURTH);
+        stats.add(Rank.MISS);
         payment = Payment.from(8000); // 8,000원 지불
+
+        statistics = Statistics.of(payment, stats);
+
     }
 
     @Test
@@ -31,7 +32,7 @@ public class StatisticsTest {
         long expectedPrize = 55000L;
 
         // when
-        long totalPrize = statistics.calculateTotalPrizeMoney();
+        long totalPrize = statistics.aggregateTotalPrice();
 
         // then
         assertThat(totalPrize).isEqualTo(expectedPrize);
@@ -42,10 +43,10 @@ public class StatisticsTest {
         // given
         // 총상금 55,000원 / 구매금액 8,000원 = 6.875
         // (6.875 * 100) = 687.5%
-        double expectedRate = 687.5;
+        double expectedRate = (double) 55000L / 8000L;
 
         // when
-        ProfitRate profitRate = statistics.calculateProfitRate(payment);
+        ProfitRate profitRate = statistics.getProfitRate();
 
         // then
         assertThat(profitRate.getRate()).isEqualTo(expectedRate);
@@ -54,9 +55,9 @@ public class StatisticsTest {
     @Test
     void 특정_등수의_당첨_개수를_반환() {
         // then
-        assertThat(statistics.getCount(Rank.FIFTH)).isEqualTo(1);
-        assertThat(statistics.getCount(Rank.FOURTH)).isEqualTo(1);
-        assertThat(statistics.getCount(Rank.MISS)).isEqualTo(6);
-        assertThat(statistics.getCount(Rank.FIRST)).isEqualTo(0); // 맵에 없으면 0
+        assertThat(statistics.showCounts(Rank.FIFTH)).isEqualTo(1);
+        assertThat(statistics.showCounts(Rank.FOURTH)).isEqualTo(1);
+        assertThat(statistics.showCounts(Rank.MISS)).isEqualTo(1);
+        assertThat(statistics.showCounts(Rank.FIRST)).isEqualTo(0); // 맵에 없으면 0
     }
 }

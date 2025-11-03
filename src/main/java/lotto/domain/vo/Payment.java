@@ -42,4 +42,8 @@ public class Payment {
     public Integer createLottoCount() {
         return money / DIVISOR;
     }
+
+    public Long toLongValue() {
+        return (long) money;
+    }
 }

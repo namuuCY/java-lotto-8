@@ -29,4 +29,9 @@ public class WinningLotto {
         throw new DomainException(ExceptionCode.BONUS_NUMBER_DUPLICATED);
     }
 
+    public Rank judgeRank(Lotto lotto) {
+        return null;
+    }
+
+
 }

@@ -9,7 +9,8 @@ public enum ExceptionCode {
     BONUS_NUMBER_DUPLICATED("보너스 숫자가 로또 숫자와 중복되고 있습니다."),
     PROFIT_RATE_INVALID("수익률은 0 이상의 double 값이어야 합니다."),
     OUT_OF_BOUND_MONEY("구입 액수는 1000 이상 100000 이하여야 합니다."),
-    INVALID_MONEY_INPUT("구입 액수는 1000의 배수여야 합니다.");
+    INVALID_MONEY_INPUT("구입 액수는 1000의 배수여야 합니다."),
+    UNEXPECTED_ERROR("예상치 못한 에러입니다. 로직을 확인해주세요");
 
     private final String message;
 
