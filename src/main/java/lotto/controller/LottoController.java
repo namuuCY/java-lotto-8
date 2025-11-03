@@ -41,9 +41,6 @@ public class LottoController {
         } catch (DomainException e) {
             outputWriter.printError(e.getMessage());
             return Optional.empty();
-        } catch (IllegalArgumentException e) {
-            outputWriter.printError(e.getMessage());
-            return Optional.empty();
         }
     }
 
@@ -66,9 +63,6 @@ public class LottoController {
             );
             return Optional.of(statistics);
         } catch (DomainException e) {
-            outputWriter.printError(e.getMessage());
-            return Optional.empty();
-        } catch (IllegalArgumentException e) {
             outputWriter.printError(e.getMessage());
             return Optional.empty();
         }

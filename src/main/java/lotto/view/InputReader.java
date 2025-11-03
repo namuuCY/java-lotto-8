@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.DomainException;
+import lotto.exception.ExceptionCode;
 
 public class InputReader {
 
@@ -22,7 +24,7 @@ public class InputReader {
         try {
             return Integer.parseInt(rawInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 숫자여야 합니다.");
+            throw new DomainException(ExceptionCode.INVALID_MONEY_INPUT_TYPE);
         }
     }
 
@@ -37,7 +39,7 @@ public class InputReader {
         try {
             return getCollect(rawInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표로 구분된 유효한 숫자 목록이어야 합니다.");
+            throw new DomainException(ExceptionCode.INVALID_INPUT_DELIMITER);
         }
     }
 
@@ -58,7 +60,7 @@ public class InputReader {
         try {
             return Integer.parseInt(rawInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 유효한 숫자여야 합니다.");
+            throw new DomainException(ExceptionCode.INVALID_INPUT_BONUS_NUMBER);
         }
     }
 

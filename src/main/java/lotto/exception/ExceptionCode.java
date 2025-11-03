@@ -10,7 +10,10 @@ public enum ExceptionCode {
     PROFIT_RATE_INVALID("수익률은 0 이상의 double 값이어야 합니다."),
     OUT_OF_BOUND_MONEY("구입 액수는 1000 이상 100000 이하여야 합니다."),
     INVALID_MONEY_INPUT("구입 액수는 1000의 배수여야 합니다."),
-    UNEXPECTED_ERROR("예상치 못한 에러입니다. 로직을 확인해주세요");
+    UNEXPECTED_ERROR("예상치 못한 에러입니다. 로직을 확인해주세요"),
+    INVALID_MONEY_INPUT_TYPE("액수의 입력 값은 숫자여야 합니다."),
+    INVALID_INPUT_DELIMITER("당첨 번호는 쉼표로 구분된 유효한 숫자 목록이어야 합니다."),
+    INVALID_INPUT_BONUS_NUMBER("보너스 번호는 유효한 숫자여야 합니다.");
 
     private final String message;
 
