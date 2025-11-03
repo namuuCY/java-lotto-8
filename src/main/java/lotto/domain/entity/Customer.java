@@ -35,6 +35,10 @@ public class Customer {
         }
     }
 
+    public List<Lotto> printLottoBundle() {
+        return this.lottoBundle;
+    }
+
     public Statistics aggregateResults(WinningLotto winningLotto) {
 
         List<Rank> winningResults = lottoBundle.stream()
