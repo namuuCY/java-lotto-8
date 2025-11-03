@@ -1,13 +1,12 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -57,5 +56,62 @@ class ApplicationTest extends NsTest {
     @Override
     public void runMain() {
         Application.main(new String[]{});
+    }
+
+
+    @Test
+    void 구입_금액_예외_처리_후_재시도_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000j",   // [예외] 숫자가 아님
+                    "1001",    // [예외] 1000원으로 나눠지지 않음
+                    "500",     // [예외] 1000원 미만
+                    "101000",  // [예외] 10만원 초과
+                    "1000",    // [성공]
+                    "1,2,3,4,5,6", // (이후 정상 진행)
+                    "7");
+
+            assertThat(output()).contains(
+                    ERROR_MESSAGE,
+                    "1개를 구매했습니다.", // <-- 재시도 후 성공 증거
+                    "당첨 통계" // <-- 프로그램 끝까지 실행 증거
+            );
+        });
+    }
+
+    @Test
+    void 당첨_번호_예외_처리_후_재시도_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", // (정상 구매)
+                    "1,2,3,4,5",
+                    "1,2,3,4,5,6,7",
+                    "1,1,2,3,4,5",
+                    "1,2,3,4,5,46",
+                    "1,2,3,4,5,6",
+                    "7");
+
+            assertThat(output()).contains(
+                    "1개를 구매했습니다.", // <-- 1단계 통과 증거
+                    ERROR_MESSAGE,
+                    "보너스 번호를 입력해 주세요." // <-- 재시도 후 성공 증거
+            );
+        });
+    }
+
+    @Test
+    void 보너스_번호_예외_처리_후_재시도_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", // (정상 구매)
+                    "1,2,3,4,5,6", // (정상 당첨 번호)
+                    "abc",   // [예외] 숫자가 아님
+                    "46",    // [예외] 범위 초과
+                    "1",     // [예외] 당첨 번호와 중복
+                    "7");    // [성공]
+
+            assertThat(output()).contains(
+                    "보너스 번호를 입력해 주세요.", // <-- 2단계 통과 증거
+                    ERROR_MESSAGE,
+                    "당첨 통계" // <-- 재시도 후 성공 및 끝까지 실행 증거
+            );
+        });
     }
 }
