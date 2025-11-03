@@ -2,7 +2,8 @@
 
 ---
 
-# 문서 링크 
+# 문서 링크
+
 - [요구사항 정리](docs/requirements.md)
 - [커밋 컨벤션](docs/commits.md)
 - [예외처리 사항 정리](docs/exceptions.md)
@@ -24,6 +25,9 @@
 | J  | 당첨 통계 리스트 출력                | [🔗](docs/exceptions.md#j) |
 | K  | 수익률 출력                      | [🔗](docs/exceptions.md#k) |
 
+# 자의적으로 추가한 요구사항
+
+- 구입 금액은 10만원의 한도를 갖습니다.(로또 1인 구매액 한도와 동일)
 
 디렉토리 구조
 ---
