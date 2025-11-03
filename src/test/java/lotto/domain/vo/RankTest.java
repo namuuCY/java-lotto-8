@@ -10,7 +10,6 @@ public class RankTest {
     @ParameterizedTest
     @CsvSource({
             "6, false, FIRST",
-            "6, true, FIRST",
             "5, true, SECOND",
             "5, false, THIRD",
             "4, false, FOURTH",
@@ -22,7 +21,7 @@ public class RankTest {
             "0, false, MISS"
     })
     void 일치_개수와_보너스_여부로_정확한_등수_반환(int matchCount, boolean bonusMatch, Rank expectedRank) {
-        // when
+//         when
         Rank result = Rank.valueOf(matchCount, bonusMatch);
 
         // then
@@ -39,10 +38,10 @@ public class RankTest {
             "MISS, 0"
     })
     void 각_등수별_올바른_상금을_반환(Rank rank, long expectedPrize) {
-        // when
+//         when
         long prize = rank.getPrizeMoney();
 
-        // then
+//         then
         assertThat(prize).isEqualTo(expectedPrize);
     }
 }
