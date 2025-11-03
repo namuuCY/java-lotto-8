@@ -39,12 +39,6 @@ public class Lotto {
                 .toList();
     }
 
-    private void isAscending(Integer former, Integer latter) {
-        if (former < latter) {
-            return;
-        }
-        throw new DomainException(ExceptionCode.LOTTO_NUMBERS_NOT_ASCENDING);
-    }
 
     private void validateDuplicate(List<Integer> numbers) {
         Integer numbersSize = numbers.size();
@@ -82,5 +76,9 @@ public class Lotto {
     public Boolean isIncluding(Integer target) {
         return numbers.stream()
                 .anyMatch(number -> number.equals(target));
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
