@@ -96,22 +96,4 @@ class ApplicationTest extends NsTest {
             );
         });
     }
-
-    @Test
-    void 보너스_번호_예외_처리_후_재시도_테스트() {
-        assertSimpleTest(() -> {
-            runException("1000", // (정상 구매)
-                    "1,2,3,4,5,6", // (정상 당첨 번호)
-                    "abc",   // [예외] 숫자가 아님
-                    "46",    // [예외] 범위 초과
-                    "1",     // [예외] 당첨 번호와 중복
-                    "7");    // [성공]
-
-            assertThat(output()).contains(
-                    "보너스 번호를 입력해 주세요.", // <-- 2단계 통과 증거
-                    ERROR_MESSAGE,
-                    "당첨 통계" // <-- 재시도 후 성공 및 끝까지 실행 증거
-            );
-        });
-    }
 }

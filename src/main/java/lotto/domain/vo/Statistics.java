@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Statistics {
-    private final Payment payment;
     private final ProfitRate profitRate;
     private final Map<Rank, Integer> results;
 
@@ -14,7 +13,6 @@ public class Statistics {
     }
 
     private Statistics(Payment payment, List<Rank> winningResults) {
-        this.payment = payment;
         this.results = upsertResults(winningResults);
         Long totalPrize = aggregateTotalPrice();
         this.profitRate = aggregateProfitRate(payment, totalPrize);

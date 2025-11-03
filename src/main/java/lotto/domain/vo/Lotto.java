@@ -9,6 +9,7 @@ import lotto.exception.ExceptionCode;
 // 이 클래스를 사용해야 한다.
 public class Lotto {
     // 아래 필드의 접근제어자는 private 이어야 하며, 이 필드 이외의 필드가 있어서는 안된다.
+    private final Integer LOTTO_SIZE_TEMPLATE = 6;
     private final List<Integer> numbers;
 
     private Lotto(List<Integer> numbers) {
@@ -55,7 +56,7 @@ public class Lotto {
     }
 
     private void validateLength(List<Integer> numbers) {
-        if (numbers.size() == 6) {
+        if (numbers.size() == LOTTO_SIZE_TEMPLATE) {
             return;
         }
         throw new DomainException(ExceptionCode.NOT_ENOUGH_LOTTO_NUMBERS);

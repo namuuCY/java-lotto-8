@@ -5,10 +5,17 @@ import java.util.List;
 import lotto.domain.vo.Lotto;
 
 public class RandomLottoGenerator implements LottoGenerator {
+    private final Integer START_INCLUSIVE_INDEX = 1;
+    private final Integer END_INCLUSIVE_INDEX = 45;
+    private final Integer COUNT_NUMBER = 6;
 
     @Override
     public Lotto generate() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                START_INCLUSIVE_INDEX,
+                END_INCLUSIVE_INDEX,
+                COUNT_NUMBER
+        );
         return Lotto.of(numbers);
     }
 }
