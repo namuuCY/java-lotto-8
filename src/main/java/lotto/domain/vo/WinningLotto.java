@@ -30,6 +30,7 @@ public class WinningLotto {
     }
 
     public Rank judgeRank(Lotto lotto) {
+
         return null;
     }
 
