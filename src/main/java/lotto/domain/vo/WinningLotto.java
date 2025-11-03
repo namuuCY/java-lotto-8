@@ -30,8 +30,25 @@ public class WinningLotto {
     }
 
     public Rank judgeRank(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
 
-        return null;
+        Integer matchedNumber = count(numbers);
+        Boolean isBonusMatched = isMatched(numbers);
+
+        return Rank.valueOf(matchedNumber, isBonusMatched);
+    }
+
+    private Boolean isMatched(List<Integer> numbers) {
+        Integer bonus = bonusNumber.getBonusNumber();
+        return numbers.contains(bonus);
+    }
+
+    private Integer count(List<Integer> numbers) {
+        long matchedCount = numbers.stream()
+                .filter(this.lotto::isIncluding)
+                .count();
+
+        return (int) matchedCount;
     }
 
 
