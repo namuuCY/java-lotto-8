@@ -43,7 +43,7 @@ public class StatisticsTest {
         // given
         // 총상금 55,000원 / 구매금액 8,000원 = 6.875
         // (6.875 * 100) = 687.5%
-        double expectedRate = (double) 55000L / 8000L;
+        double expectedRate = ((double) 55000L / 8000L) * 100.0;
 
         // when
         ProfitRate profitRate = statistics.getProfitRate();

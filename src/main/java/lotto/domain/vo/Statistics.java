@@ -49,7 +49,7 @@ public class Statistics {
 
     private ProfitRate aggregateProfitRate(Payment payment, Long totalPrize) {
         Long paymentLongValue = payment.toLongValue();
-        return ProfitRate.from((double) totalPrize / paymentLongValue);
+        return ProfitRate.from(((double) totalPrize / paymentLongValue) * 100.0);
     }
 
     public ProfitRate getProfitRate() {
