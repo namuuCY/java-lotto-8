@@ -1,16 +1,16 @@
 package lotto.controller.dto;
 
-import java.util.LinkedHashMap;
+import java.util.EnumMap;
 import lotto.domain.vo.ProfitRate;
 import lotto.domain.vo.Rank;
 import lotto.domain.vo.Statistics;
 
 public record WinningStatistics(
-        LinkedHashMap<Rank, Integer> stats,
+        EnumMap<Rank, Integer> stats,
         Double profitRate
 ) {
     public static WinningStatistics of(Statistics statistics) {
-        LinkedHashMap<Rank, Integer> orderedStats = new LinkedHashMap<>();
+        EnumMap<Rank, Integer> orderedStats = new EnumMap<>(Rank.class);
 
         orderedStats.put(Rank.FIFTH, statistics.showCounts(Rank.FIFTH));
         orderedStats.put(Rank.FOURTH, statistics.showCounts(Rank.FOURTH));

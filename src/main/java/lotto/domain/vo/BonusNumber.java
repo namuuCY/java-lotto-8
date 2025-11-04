@@ -5,8 +5,8 @@ import lotto.exception.ExceptionCode;
 
 public class BonusNumber {
 
-    private final Integer LOWER_BOUND = 1;
-    private final Integer UPPER_BOUND = 45;
+    private static final Integer LOWER_BOUND = 1;
+    private static final Integer UPPER_BOUND = 45;
     private final Integer bonusNumber;
 
     private BonusNumber(Integer bonusNumber) {

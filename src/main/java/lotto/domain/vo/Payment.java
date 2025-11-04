@@ -4,9 +4,9 @@ import lotto.exception.DomainException;
 import lotto.exception.ExceptionCode;
 
 public class Payment {
-    private final Integer DIVISOR = 1000;
-    private final Integer MIN_BOUND = 1000;
-    private final Integer MAX_BOUND = 100000;
+    private static final Integer DIVISOR = 1000;
+    private static final Integer MIN_BOUND = 1000;
+    private static final Integer MAX_BOUND = 100000;
 
     private final Integer money;
 

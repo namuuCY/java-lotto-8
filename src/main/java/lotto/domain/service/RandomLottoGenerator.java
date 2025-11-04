@@ -5,9 +5,9 @@ import java.util.List;
 import lotto.domain.vo.Lotto;
 
 public class RandomLottoGenerator implements LottoGenerator {
-    private final Integer START_INCLUSIVE_INDEX = 1;
-    private final Integer END_INCLUSIVE_INDEX = 45;
-    private final Integer COUNT_NUMBER = 6;
+    private static final Integer START_INCLUSIVE_INDEX = 1;
+    private static final Integer END_INCLUSIVE_INDEX = 45;
+    private static final Integer COUNT_NUMBER = 6;
 
     @Override
     public Lotto generate() {

@@ -23,7 +23,8 @@ public class WinningLotto {
 
     private void validateCombinations(Lotto lotto, BonusNumber bonusNumber) {
         Integer targetNumber = bonusNumber.getBonusNumber();
-        if (!lotto.isIncluding(targetNumber)) {
+        boolean isExcluding = !lotto.isIncluding(targetNumber);
+        if (isExcluding) {
             return;
         }
         throw new DomainException(ExceptionCode.BONUS_NUMBER_DUPLICATED);

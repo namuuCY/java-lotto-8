@@ -12,7 +12,19 @@ public class InputReader {
     public Integer readMoney() {
         getMoneyAnnouncement(Announcement.INPUT_MONEY);
         String rawInput = Console.readLine();
-        return convertRawInput(rawInput);
+        return convertInputToIntegerByErrorCase(rawInput, ExceptionCode.INVALID_MONEY_INPUT_TYPE);
+    }
+
+    public List<Integer> readCombination() {
+        getMoneyAnnouncement(Announcement.INPUT_COMBINATION);
+        String rawInput = Console.readLine();
+        return convertCombinationInput(rawInput);
+    }
+
+    public Integer readBonusNumber() {
+        getMoneyAnnouncement(Announcement.INPUT_BONUS_NUMBER);
+        String rawInput = Console.readLine();
+        return convertInputToIntegerByErrorCase(rawInput, ExceptionCode.INVALID_INPUT_BONUS_NUMBER);
     }
 
     private void getMoneyAnnouncement(Announcement announcement) {
@@ -20,19 +32,12 @@ public class InputReader {
         System.out.println(message);
     }
 
-    private Integer convertRawInput(String rawInput) {
+    private Integer convertInputToIntegerByErrorCase(String rawInput, ExceptionCode exceptionCode) {
         try {
             return Integer.parseInt(rawInput);
         } catch (NumberFormatException e) {
-            throw new DomainException(ExceptionCode.INVALID_MONEY_INPUT_TYPE);
+            throw new DomainException(exceptionCode);
         }
-    }
-
-
-    public List<Integer> readCombination() {
-        getMoneyAnnouncement(Announcement.INPUT_COMBINATION);
-        String rawInput = Console.readLine();
-        return convertCombinationInput(rawInput);
     }
 
     private List<Integer> convertCombinationInput(String rawInput) {
@@ -49,20 +54,4 @@ public class InputReader {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
-
-    public Integer readBonusNumber() {
-        getMoneyAnnouncement(Announcement.INPUT_BONUS_NUMBER);
-        String rawInput = Console.readLine();
-        return convertBonusInput(rawInput);
-    }
-
-    private Integer convertBonusInput(String rawInput) {
-        try {
-            return Integer.parseInt(rawInput);
-        } catch (NumberFormatException e) {
-            throw new DomainException(ExceptionCode.INVALID_INPUT_BONUS_NUMBER);
-        }
-    }
-
-
 }

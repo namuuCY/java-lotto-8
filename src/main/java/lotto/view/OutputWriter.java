@@ -24,9 +24,7 @@ public class OutputWriter {
 
             writeByRankAndCount(rank, count);
         }
-
         System.out.printf("총 수익률은 %,.1f%%입니다.\n", statistics.profitRate());
-
     }
 
     private void writeByRankAndCount(Rank rank, Integer count) {
